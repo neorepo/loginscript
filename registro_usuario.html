@@ -1,0 +1,144 @@
+<div class="card bg-light" style="width: 100%;max-width: 450px;margin: auto;">
+    <div class="card-body">
+        <h2 class="card-title mb-3">Registro de usuario</h2>
+        <?php if(!$registroExitoso): ?>
+        <div class="alert alert-danger" role="alert">Lo sentimos, no pudimos realizar el registro.</div>
+        <?php endif; ?>
+        <form action="#" method="post">
+            <input type="hidden" name="token" value="<?php echo htmlspecialchars(Token::csrf()); ?>" readonly
+                spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
+            <div class="form-row">
+                <div class="col-md-6 mb-3">
+                    <label for="apellido">Apellidos *</label>
+                    <input type="text" name="apellido" id="apellido" value="<?php echo $usuario['apellido']; ?>"
+                        class="form-control form-control-lg <?php echo isset($errors['apellido']) ? 'is-invalid' : ''; ?>"
+                        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" required>
+                    <span
+                        class="invalid-feedback"><?php echo isset($errors['apellido']) ? $errors['apellido'] : ''; ?></span>
+                </div>
+                <div class="col-md-6 mb-3">
+                    <label for="nombre">Nombres *</label>
+                    <input type="text" name="nombre" id="nombre" value="<?php echo $usuario['nombre']; ?>"
+                        class="form-control form-control-lg <?php echo isset($errors['nombre']) ? 'is-invalid' : ''; ?>"
+                        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" required>
+                    <span
+                        class="invalid-feedback"><?php echo isset($errors['nombre']) ? $errors['nombre'] : ''; ?></span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="email">E-mail *</label>
+                <input type="email" name="email" id="email" value="<?php echo $usuario['email']; ?>"
+                    class="form-control form-control-lg <?php echo isset($errors['email']) ? 'is-invalid' : ''; ?>"
+                    spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" required>
+                <span class="invalid-feedback"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="password" class="mb-0">Contraseña *</label>
+                <small id="passwordHelp" class="form-text mb-2">Utiliza ocho caracteres como mínimo con
+                    una combinación de letras, números y símbolos, sin caracteres especiales, excepto estos: @ . - _ ~ ! # $ % ^ *</small>
+                <input type="password" name="password" id="password" value="<?php echo $usuario['password']; ?>"
+                    class="form-control form-control-lg <?php echo isset($errors['password']) ? 'is-invalid' : ''; ?>"
+                    aria-describedby="passwordHelp" spellcheck="false" autocomplete="off" autocorrect="off"
+                    autocapitalize="off" required>
+                <span
+                    class="invalid-feedback"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
+            </div>
+
+            <div class="form-group">
+                <label for="confirm-password">Confirmación *</label>
+                <input type="password" name="confirm_password" id="confirm-password"
+                    value="<?php //echo $usuario['confirm_password']; ?>"
+                    class="form-control form-control-lg <?php echo isset($errors['confirm_password']) ? 'is-invalid' : ''; ?>"
+                    spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" required>
+                <span
+                    class="invalid-feedback"><?php echo isset($errors['confirm_password']) ? $errors['confirm_password'] : ''; ?></span>
+            </div>
+
+            <!-- CHECKBOX Mostrar contraseña -->
+            <div class="form-group">
+                <input type="checkbox" id="show-password"
+                    style="position: relative; top: 2px;height: 16px;width: 16px;">
+                <label for="show-password" style="font-weight: normal;">Mostrar contraseña</label>
+            </div>
+
+            <div class="row align-items-center">
+                <div class="col">
+                    <button type="submit" class="btn btn-success btn-lg">Enviar datos</button>
+                </div>
+                <div class="col-auto fs-14">
+                    ¿Ya estás registrado? <a href="login_usuario.php">Clic aquí</a>
+                </div>
+            </div>
+
+        </form>
+    </div>
+</div>
+
+<!-- <div class="container">
+    <div class="row justify-content-md-center">
+        <div class="col-md-5">
+            Contenido aquí
+        </div>
+    </div>
+</div> -->
+
+<script>
+    const email = document.querySelector("#email");
+    // https://owasp.org/www-community/OWASP_Validation_Regex_Repository
+    const regexEmail = /^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
+
+    const psw1 = document.querySelector("#password");
+    const psw2 = document.querySelector("#confirm-password");
+    const show_psw = document.querySelector("#show-password");
+
+    document.addEventListener('DOMContentLoaded', () => {
+        initEmailValidation();
+        initMostrarContrasenias();
+    });
+
+    function initMostrarContrasenias() {
+        if (show_psw) {
+            show_psw.onclick = mostrarContrasenias;
+        }
+    }
+
+    function mostrarContrasenias() {
+        if (psw1 && psw2) {
+            if (psw1.type === "password" && psw2.type === "password") {
+                psw1.type = psw2.type = "text";
+            } else {
+                psw1.type = psw2.type = "password";
+            }
+        }
+    }
+
+    function initEmailValidation() {
+        if (!email) return;
+        email.addEventListener("blur", function () {
+            let value = this.value.trim();
+            if (isEmpty(value)) {
+                // setError(email, "No puedes dejar este campo en blanco.");
+            } else if (validEmail(value)) {
+                let data = "email=" + encodeURIComponent(value);
+                sendHttpRequest('POST', 'usuario_email_exists.php', data, emailExists);
+            } else {
+                setError(email, "Introduce una dirección de correo electrónico válida JS.");
+            }
+        });
+    }
+
+    function emailExists(response) {
+        // var rta = Boolean(response);
+        if (response == "ok") {
+            setSuccess(email);
+        } else {
+            setError(email, "Ese e-mail ya está en uso. Prueba con otro.");
+        }
+    }
+
+    function validEmail(email) {
+        return regexEmail.test(email);
+    }
+</script>
