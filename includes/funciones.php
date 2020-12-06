@@ -89,14 +89,21 @@ function verifyPassword($password, $passwordHash) {
     return (password_verify($password . PEPPER, $passwordHash) == $passwordHash);
 }
 function contraseniaSegura($password) {
+    /**
+     * htmlspecialchars en la función testInput() convierte el caracter "&" en "&amp;"
+     * La siguiente línea de código corrige ese pequeño detalle revirtiendo el proceso.
+     * De no hacerlo, match de letras ninúsculas dará 1 por "amp", aunque la cadena no contenga letras minúsculas.
+     */
+    $password = str_replace('&amp;', '&', $password);
     $uppercase = preg_match('/[A-Z]/', $password);
     $lowercase = preg_match('/[a-z]/', $password);
     $number = preg_match('/[0-9]/', $password);
     
-    $patterns = ['/[A-Z]/', '/[a-z]/', '/[0-9]/'];
-    $replacements = ['', '', ''];
+    $patterns = ['/[A-Z]/i', '/[0-9]/'];
+    $replacements = ['', ''];
+    // Reemplazamos todos los caracteres de letras y números por valores vacíos, dejando la password solo con caracteres especiales
     $password = preg_replace($patterns, $replacements, $password);
-    
+    // Iniciamos la busqueda de principio a fin de los caracteres permitidos.
     $specialChars = preg_match('/^[' . preg_quote(PASSWORD_SYMBOLS) . ']+$/', $password);
     if (!$uppercase || !$lowercase || !$number || !$specialChars) {
         return false;
