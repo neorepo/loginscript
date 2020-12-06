@@ -1,0 +1,24 @@
+<div class="card bg-light" style="width: 100%;max-width: 400px;margin: auto;">
+    <div class="card-body">
+        <h2 class="card-title mb-3">¿Problemas para iniciar sesión?</h2>
+        <label style="font-weight: normal;">Ingrese la dirección de correo electrónico de su cuenta de usuario y le
+            enviaremos un enlace para
+            restablecer la contraseña.</label>
+        <form action="#" method="post">
+            <input type="hidden" name="token" value="<?php echo htmlspecialchars(Token::csrf()); ?>" readonly
+                spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
+            <div class="form-group">
+                <label for="email">E-mail</label>
+                <input type="email" name="email" id="email" value="<?php echo $usuario['email']; ?>"
+                    class="form-control form-control-lg <?php echo isset($errors['email']) ? 'is-invalid' : ''; ?>"
+                    spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
+                <span class="invalid-feedback"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span>
+            </div>
+
+            <button type="submit" class="btn btn-success btn-lg btn-block">Enviar correo
+                electrónico</button>
+
+        </form>
+
+    </div>
+</div>

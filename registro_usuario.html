@@ -37,7 +37,7 @@
             <div class="form-group">
                 <label for="password" class="mb-0">Contraseña *</label>
                 <small id="passwordHelp" class="form-text mb-2">Utiliza ocho caracteres como mínimo con
-                    una combinación de letras, números y símbolos, sin caracteres especiales, excepto estos: @ . - _ ~ ! # $ % ^ *</small>
+                    una combinación de letras, números y símbolos, sin espacios en blanco, sin caracteres especiales, excepto estos: @ . - _ ~ ! # $ % ^ & *</small>
                 <input type="password" name="password" id="password" value="<?php echo $usuario['password']; ?>"
                     class="form-control form-control-lg <?php echo isset($errors['password']) ? 'is-invalid' : ''; ?>"
                     aria-describedby="passwordHelp" spellcheck="false" autocomplete="off" autocorrect="off"
@@ -65,10 +65,10 @@
 
             <div class="row align-items-center">
                 <div class="col">
-                    <button type="submit" class="btn btn-success btn-lg">Enviar datos</button>
+                    <button type="submit" class="btn btn-success btn-lg">Registrar</button>
                 </div>
                 <div class="col-auto fs-14">
-                    ¿Ya estás registrado? <a href="login_usuario.php">Clic aquí</a>
+                    ¿Ya estás registrado? <a href="index.php">Clic aquí</a>
                 </div>
             </div>
 
