@@ -8,7 +8,7 @@ define('LONGITUD_MINIMA_EMAIL', 6);
 define('LONGITUD_MAXIMA_EMAIL', 30);
 define('MAX_PASSWORD_LENGTH', 60);
 define('MIN_PASSWORD_LENGTH', 8);
-define('PASSWORD_SYMBOLS', '@.-_~!#$%^*');
+define('PASSWORD_SYMBOLS', '@.-_~!#$%^&*');
 // https://cheatsheetseries.owasp.org/cheatsheets/Password_Storage_Cheat_Sheet.html#peppering
 define('PEPPER', 'r8UN#uHVX5x~&4+ZaG&y'); // 20 caracteres
 
