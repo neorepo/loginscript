@@ -7,7 +7,7 @@ https://cheatsheetseries.owasp.org/
 Avast, generador de contraseñas aleatorias
 https://www.avast.com/es-ar/random-password-generator ejemplo (%2JG^+WOu_Nr#)
 
-Comprueba tu contraseña
+Comprueba la fortaleza de tu contraseña
 https://password.kaspersky.com/es/
 
 CONSIDERACIONES, EXPRESIÓN REGULAR PARA EL E-MAIL
@@ -35,15 +35,7 @@ REGEX
 \w Coincide con cualquier letra, dígito o subrayado. Equivalente a [a-zA-Z0-9_]. [^a-zA-Z0-9_] Cualquier carácter excepto a-zA-Z0-9_
 \W Coincide con cualquier cosa que no sea una letra, un dígito o un guión bajo.
 
-CONSIDERACIONES PARA LA CONTRASEÑA SEGURA
-*REQUERIMIENTOS DE CONTRASEÑA DEL SITIO NETACAD.COM**
-New password must include:
-One upper case character => Un carácter en mayúscula
-One lower case character => Un carácter en minúscula
-One number character => Un carácter numérico
-Please enter a minimum of 8 characters and maximum of 60 characters. => Por favor, ingrese un mínimo de 8 caracteres y un máximo de 60 caracteres.
-No special characters, except these (Sin caracteres especiales, excepto estos): @.-_~!#$%^&*
-Password cannot contain all or part of your email address
+REQUERIMIENTOS DE CONTRASEÑA DEL SITIO NETACAD
 La nueva contraseña debe incluir:
 Una mayúscula
 Una minúscula
