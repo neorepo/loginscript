@@ -37,16 +37,17 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         }
     }
 
-    if (!$usuario['email']) {
+    // var_dump($usuario);
+    /*if (!$usuario['email']) {
         $errors['email'] = $messages['requerido'];
     }
 
     if (!$usuario['password']) {
         $errors['password'] = $messages['requerido'];
-    }
+    }*/
 
     // Si no existen errores
-    if (empty($errors)) {
+    // if (empty($errors)) {
         // Insertamos en la base de datos
         if (validarCredenciales($usuario['email'], $usuario['password'])) {
             $_SESSION['_flash'] = 'Te has logueado correctamente.';
@@ -56,7 +57,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         else {
             $accesoExitoso = false;
         }
-    }
+    // }
 }
 
 $flashMessage = null;
@@ -79,7 +80,8 @@ function validarCredenciales($email, $password) {
         if (verifyPassword( $password, $usuario['password'])) {
             // unset any session variables
             $_SESSION = [];
-            $_SESSION['id'] = $usuario['id_usuario'];
+            $_SESSION['id_usuario'] = $usuario['id_usuario'];
+            $_SESSION['nombre_usuario'] = $usuario['nombre'] . ' ' . $usuario['apellido'];
             return true;
         }
     }
