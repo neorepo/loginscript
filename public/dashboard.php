@@ -1,6 +1,6 @@
 <?php
 
-require_once 'includes/funciones.php';
+require_once '../includes/funciones.php';
 
 $flashMessage = null;
 if (isset($_SESSION['_flash'])) {

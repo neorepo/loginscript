@@ -1,9 +1,9 @@
 <?php
-require_once 'config/Config.php';
-require_once 'src/Db.php';
+require_once '../config/Config.php';
+require_once '../src/Db.php';
 
-require_once 'includes/funciones.php';
-require_once 'src/Token.php';
+require_once '../includes/funciones.php';
+require_once '../src/Token.php';
 
 // Array con valores por defecto
 $usuario = [
@@ -67,8 +67,8 @@ if (isset($_SESSION['_flash'])) {
 }
 
 // Vista, archivo con formulario de registro.
-$template = 'login_usuario.html';
-require_once 'base.html';
+$template = '../templates/usuario/login_usuario.html';
+require_once '../templates/base.html';
 
 // Lógica de persistencia
 function validarCredenciales($email, $password) {

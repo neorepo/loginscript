@@ -60,9 +60,9 @@ function soloNumeros($value) {
 }
 function emailValido($email) {
     // FILTER_SANITIZE_EMAIL => Elimina todos los caracteres menos letras, dígitos y !#$%&'*+-=?^_`{|}~@.[].
-    $email = filter_var($email, FILTER_SANITIZE_EMAIL);
+    // $email = filter_var($email, FILTER_SANITIZE_EMAIL);
     // https://owasp.org/www-community/OWASP_Validation_Regex_Repository
-    $regexEmail= '/^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/';
+    $regexEmail= '/^[\w+&*-]+(?:\.[\w+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/';
     return preg_match($regexEmail, $email);
     // O
     // return filter_var($email, FILTER_VALIDATE_EMAIL);

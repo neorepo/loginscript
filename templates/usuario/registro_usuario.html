@@ -1,69 +1,88 @@
 <div class="card bg-light" style="width: 100%;max-width: 450px;margin: auto;">
     <div class="card-body">
         <h2 class="card-title mb-3">Registro de usuario</h2>
+
+        <!-- Feedback registro fallido -->
         <?php if(!$registroExitoso): ?>
         <div class="alert alert-danger" role="alert">Lo sentimos, no pudimos realizar el registro.</div>
         <?php endif; ?>
+        <!-- Fin feedback -->
+
+        <!-- Formulario de registro de usuario -->
         <form action="#" method="post">
             <input type="hidden" name="token" value="<?php echo htmlspecialchars(Token::csrf()); ?>" readonly
                 spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
             <div class="form-row">
+                <!-- Apelliddo -->
                 <div class="col-md-6 mb-3">
                     <label for="apellido">Apellidos *</label>
                     <input type="text" name="apellido" id="apellido" value="<?php echo $usuario['apellido']; ?>"
                         class="form-control form-control-lg <?php echo isset($errors['apellido']) ? 'is-invalid' : ''; ?>"
-                        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" required>
+                        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
                     <span
                         class="invalid-feedback"><?php echo isset($errors['apellido']) ? $errors['apellido'] : ''; ?></span>
                 </div>
+                <!-- Fin apellido -->
+
+                <!-- Nombre -->
                 <div class="col-md-6 mb-3">
                     <label for="nombre">Nombres *</label>
                     <input type="text" name="nombre" id="nombre" value="<?php echo $usuario['nombre']; ?>"
                         class="form-control form-control-lg <?php echo isset($errors['nombre']) ? 'is-invalid' : ''; ?>"
-                        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" required>
+                        spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
                     <span
                         class="invalid-feedback"><?php echo isset($errors['nombre']) ? $errors['nombre'] : ''; ?></span>
                 </div>
+                <!-- Fin nombre -->
             </div>
 
+            <!-- E-mail -->
             <div class="form-group">
                 <label for="email">E-mail *</label>
-                <input type="email" name="email" id="email" value="<?php echo $usuario['email']; ?>"
+                <input type="text" name="email" id="email" value="<?php echo $usuario['email']; ?>"
                     class="form-control form-control-lg <?php echo isset($errors['email']) ? 'is-invalid' : ''; ?>"
-                    spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" required>
+                    spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
                 <span class="invalid-feedback"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span>
             </div>
+            <!-- Fin e-mail -->
 
+            <!-- Contraseña -->
             <div class="form-group">
                 <label for="password" class="mb-0">Contraseña *</label>
                 <small id="passwordHelp" class="form-text mb-2">Utiliza ocho caracteres como mínimo con
-                    una combinación de letras, números y símbolos, sin espacios en blanco, sin caracteres especiales, excepto estos: @ . - _ ~ ! # $ % ^ & *</small>
+                    una combinación de letras, números y símbolos, sin espacios en blanco, sin caracteres especiales,
+                    excepto estos: @ . - _ ~ ! # $ % ^ & *</small>
                 <input type="password" name="password" id="password" value="<?php echo $usuario['password']; ?>"
                     class="form-control form-control-lg <?php echo isset($errors['password']) ? 'is-invalid' : ''; ?>"
                     aria-describedby="passwordHelp" spellcheck="false" autocomplete="off" autocorrect="off"
-                    autocapitalize="off" required>
+                    autocapitalize="off">
                 <span
                     class="invalid-feedback"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
             </div>
+            <!-- Fin contraseña -->
 
+            <!-- Confirmación de contraseña -->
             <div class="form-group">
                 <label for="confirm-password">Confirmación *</label>
                 <input type="password" name="confirm_password" id="confirm-password"
                     value="<?php //echo $usuario['confirm_password']; ?>"
                     class="form-control form-control-lg <?php echo isset($errors['confirm_password']) ? 'is-invalid' : ''; ?>"
-                    spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" required>
+                    spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
                 <span
                     class="invalid-feedback"><?php echo isset($errors['confirm_password']) ? $errors['confirm_password'] : ''; ?></span>
             </div>
+            <!-- Fin confirmación de contraseña -->
 
-            <!-- CHECKBOX Mostrar contraseña -->
+            <!-- Checkbox mostrar contraseña -->
             <div class="form-group">
                 <input type="checkbox" id="show-password"
                     style="position: relative; top: 2px;height: 16px;width: 16px;">
                 <label for="show-password" style="font-weight: normal;">Mostrar contraseña</label>
             </div>
+            <!-- Fin checkbox mostrar contraseña -->
 
             <div class="row align-items-center">
+                <!-- Botón envió de formulario -->
                 <div class="col">
                     <button type="submit" class="btn btn-success btn-lg">Registrar</button>
                 </div>
@@ -75,14 +94,6 @@
         </form>
     </div>
 </div>
-
-<!-- <div class="container">
-    <div class="row justify-content-md-center">
-        <div class="col-md-5">
-            Contenido aquí
-        </div>
-    </div>
-</div> -->
 
 <script>
     const email = document.querySelector("#email");
@@ -134,7 +145,7 @@
         if (response == "ok") {
             setSuccess(email);
         } else {
-            setError(email, "Ese e-mail ya está en uso. Prueba con otro.");
+            setError(email, "Ese e-mail ya esta registrado. Prueba con otro.");
         }
     }
 

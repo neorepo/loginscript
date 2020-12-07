@@ -1,9 +1,9 @@
 <?php
-require_once 'config/Config.php';
-require_once 'src/Db.php';
+require_once '../config/Config.php';
+require_once '../src/Db.php';
 
-require_once 'includes/funciones.php';
-require_once 'src/Token.php';
+require_once '../includes/funciones.php';
+require_once '../src/Token.php';
 
 // Array con valores por defecto
 $usuario = [
@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif (!emailValido($usuario['email'])) {
         $errors['email'] = $messages['emailInvalido'];
     } elseif (existeEmailUsuario($usuario['email'])) {
-        $errors['email'] = 'Ese e-mail ya está en uso. Prueba con otro.';
+        $errors['email'] = 'Ese e-mail ya está registrado. Prueba con otro.';
     }
 
     // Validación de las contraseñas
@@ -78,7 +78,8 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
         $errors['password'] = 'Usa ' . MIN_PASSWORD_LENGTH . ' caracteres como mínimo para la contraseña.';
     } elseif (!longitudMaxima($usuario['password'], MAX_PASSWORD_LENGTH)) {
         $errors['password'] = 'Usa ' . MAX_PASSWORD_LENGTH . ' caracteres como máximo para la contraseña.';
-    } elseif (!contraseniaSegura($usuario['password'])) {
+    }
+    elseif (!contraseniaSegura($usuario['password'])) {
         $errors['password'] = 'La contraseña debe incluir <b>al menos una letra mayúscula, una letra minúscula, 
         un número y solo caracteres como: ' . PASSWORD_SYMBOLS . '</b>';
         // $errors['password'] = 'Elige una contraseña más segura. Prueba con una combinación de letras, números y símbolos.';
@@ -115,5 +116,5 @@ if (isset($_SESSION['_flash'])) {
 }
 
 // Vista, archivo con formulario de registro.
-$template = 'registro_usuario.html';
-require_once 'base.html';
+$template = '../templates/usuario/registro_usuario.html';
+require_once '../templates/base.html';

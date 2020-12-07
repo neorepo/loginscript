@@ -29,7 +29,7 @@
                 <!-- Enlace de restablecimiento de contraseña -->
                 <a style="float: right;font-size: 14px;margin-top: .2rem;" href="">¿Se te olvidó tu contraseña?</a>
 
-                <input type="password" name="password" id="password" value="<?php echo $usuario['password']; ?>"
+                <input type="password" name="password" id="password" value="<?php //echo $usuario['password']; ?>"
                     class="form-control form-control-lg <?php echo isset($errors['password']) ? 'is-invalid' : ''; ?>"
                     spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" tabindex="2">
                 <span class="invalid-feedback"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
