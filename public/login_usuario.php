@@ -74,7 +74,6 @@ require_once '../templates/base.html';
 function validarCredenciales($email, $password) {
     $sql = 'SELECT * FROM usuario WHERE email = ? LIMIT 1;';
     $rows = Db::query($sql, $email);
-
     if (count($rows) == 1) {
         $usuario = $rows[0];
         if (verifyPassword( $password, $usuario['password'])) {

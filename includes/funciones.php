@@ -111,7 +111,7 @@ function contraseniaSegura($password) {
     return true;
 }
 function existeEmailUsuario($email) {
-    if (getUsuarioPorEmail($email)) {
+    if (getUsuarioPorEmail(strtolower($email))) {
         return true;
     }
     return false;
@@ -159,10 +159,10 @@ function isEmpty($value) {
 function getUsuarioPorEmail($email) {
     $sql = 'SELECT * FROM usuario WHERE email = ? LIMIT 1;';
     $rows = Db::query($sql, $email);
-    if (count($rows) == 1) {
-        return $rows[0];
+    if (!$rows) {
+        return null;
     }
-    return null;
+    return $rows[0];
 }
 function insertarUsuario($usuario) {
     $ahora = date('Y-m-d H:i:s');

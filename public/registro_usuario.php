@@ -68,7 +68,7 @@ if ($_SERVER['REQUEST_METHOD'] == 'POST') {
     } elseif (!emailValido($usuario['email'])) {
         $errors['email'] = $messages['emailInvalido'];
     } elseif (existeEmailUsuario($usuario['email'])) {
-        $errors['email'] = 'Ese e-mail ya está registrado. Prueba con otro.';
+        $errors['email'] = 'Ese e-mail ya está registrado. Prueba con otro PHP.';
     }
 
     // Validación de las contraseñas

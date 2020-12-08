@@ -97,42 +97,20 @@
 
 <script>
     const email = document.querySelector("#email");
-    // https://owasp.org/www-community/OWASP_Validation_Regex_Repository
-    const regexEmail = /^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
-
-    const psw1 = document.querySelector("#password");
-    const psw2 = document.querySelector("#confirm-password");
-    const show_psw = document.querySelector("#show-password");
 
     document.addEventListener('DOMContentLoaded', () => {
         initEmailValidation();
         initMostrarContrasenias();
     });
 
-    function initMostrarContrasenias() {
-        if (show_psw) {
-            show_psw.onclick = mostrarContrasenias;
-        }
-    }
-
-    function mostrarContrasenias() {
-        if (psw1 && psw2) {
-            if (psw1.type === "password" && psw2.type === "password") {
-                psw1.type = psw2.type = "text";
-            } else {
-                psw1.type = psw2.type = "password";
-            }
-        }
-    }
-
     function initEmailValidation() {
         if (!email) return;
-        email.addEventListener("blur", function () {
+        email.addEventListener("blur", function (e) {
             let value = this.value.trim();
             if (isEmpty(value)) {
                 // setError(email, "No puedes dejar este campo en blanco.");
             } else if (validEmail(value)) {
-                let data = "email=" + encodeURIComponent(value);
+                let data = "email=" + encodeURIComponent(value.toLowerCase());
                 sendHttpRequest('POST', 'usuario_email_exists.php', data, emailExists);
             } else {
                 setError(email, "Introduce una dirección de correo electrónico válida JS.");
@@ -145,11 +123,32 @@
         if (response == "ok") {
             setSuccess(email);
         } else {
-            setError(email, "Ese e-mail ya esta registrado. Prueba con otro.");
+            setError(email, "Ese e-mail ya esta registrado. Prueba con otro JS.");
         }
     }
 
     function validEmail(email) {
+        // https://owasp.org/www-community/OWASP_Validation_Regex_Repository
+        const regexEmail = /^[a-zA-Z0-9_+&*-]+(?:\.[a-zA-Z0-9_+&*-]+)*@(?:[a-zA-Z0-9-]+\.)+[a-zA-Z]{2,7}$/;
         return regexEmail.test(email);
+    }
+
+    function initMostrarContrasenias() {
+        const show_psw = document.querySelector("#show-password");
+        if (show_psw) {
+            show_psw.onclick = mostrarContrasenias;
+        }
+    }
+
+    function mostrarContrasenias() {
+        const psw1 = document.querySelector("#password");
+        const psw2 = document.querySelector("#confirm-password");
+        if (psw1 && psw2) {
+            if (psw1.type === "password" && psw2.type === "password") {
+                psw1.type = psw2.type = "text";
+            } else {
+                psw1.type = psw2.type = "password";
+            }
+        }
     }
 </script>

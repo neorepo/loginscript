@@ -9,5 +9,5 @@ if (isset($_SESSION['_flash'])) {
 }
 
 // Vista, archivo con formulario de registro.
-$template = 'dashboard.html';
-require_once 'base.html';
+$template = '../templates/dashboard.html';
+require_once '../templates/base.html';
