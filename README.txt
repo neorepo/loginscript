@@ -46,7 +46,7 @@ La contraseña no puede contener la totalidad o parte de su dirección de correo
 La contraseña nueva no puede ser la misma que la actual.
 
 Contraseñas de usuario
-usuario1 => J!c#E$%*S3i-^3_l~@. => J@.c-~!E_#$3%^*3 => T@.-o_~!P#$%1^&*2
+smithjohn@yahoo.com => J!c#E$%*S3i-^3_l~@. | J@.c-~!E_#$3%^*3 => T@.-o_~!P#$%1^&*2
 usuario2 => f~fvnjs7ePLC.^g
 
 https://www.w3.org/WAI/WCAG21/Techniques/server-side-script/SVR1

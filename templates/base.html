@@ -15,7 +15,9 @@
 
     <main class="container my-3">
         <?php if ($flashMessage): ?>
-        <div class="alert alert-info text-center" role="alert"><?php echo $flashMessage; ?></div>
+        <div class="alert alert-info text-center" role="alert">
+            <?php echo $flashMessage; ?>
+        </div>
         <?php endif; ?>
         <?php require $template; ?>
     </main>
@@ -47,6 +49,8 @@
             el.parentNode.querySelector('.invalid-feedback').innerHTML = "";
         }
 
+        // https://xhr.spec.whatwg.org/
+        // https://fetch.spec.whatwg.org/
         function sendHttpRequest(method, url, data, callback) {
             const xhr = getXhr();
             xhr.onreadystatechange = processRequest;

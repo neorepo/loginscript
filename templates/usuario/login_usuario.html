@@ -4,7 +4,12 @@
 
         <!-- Feedback Error de inicio de sesión -->
         <?php if(!$accesoExitoso): ?>
-        <div class="alert alert-danger" role="alert">Usuario o contraseña no válidos.</div>
+        <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            Usuario o contraseña no válidos.
+            <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </button>
+        </div>
         <?php endif; ?>
 
         <!-- Formulario de Login -->
@@ -32,7 +37,8 @@
                 <input type="password" name="password" id="password" value="<?php //echo $usuario['password']; ?>"
                     class="form-control form-control-lg <?php echo isset($errors['password']) ? 'is-invalid' : ''; ?>"
                     spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off" tabindex="2">
-                <span class="invalid-feedback"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
+                <span
+                    class="invalid-feedback"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
             </div>
             <!-- Fin contraseña -->
 

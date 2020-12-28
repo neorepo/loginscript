@@ -19,8 +19,9 @@
                     <input type="text" name="apellido" id="apellido" value="<?php echo $usuario['apellido']; ?>"
                         class="form-control form-control-lg <?php echo isset($errors['apellido']) ? 'is-invalid' : ''; ?>"
                         spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
-                    <span
-                        class="invalid-feedback"><?php echo isset($errors['apellido']) ? $errors['apellido'] : ''; ?></span>
+                    <span class="invalid-feedback">
+                        <?php echo isset($errors['apellido']) ? $errors['apellido'] : ''; ?>
+                    </span>
                 </div>
                 <!-- Fin apellido -->
 
@@ -30,8 +31,9 @@
                     <input type="text" name="nombre" id="nombre" value="<?php echo $usuario['nombre']; ?>"
                         class="form-control form-control-lg <?php echo isset($errors['nombre']) ? 'is-invalid' : ''; ?>"
                         spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
-                    <span
-                        class="invalid-feedback"><?php echo isset($errors['nombre']) ? $errors['nombre'] : ''; ?></span>
+                    <span class="invalid-feedback">
+                        <?php echo isset($errors['nombre']) ? $errors['nombre'] : ''; ?>
+                    </span>
                 </div>
                 <!-- Fin nombre -->
             </div>
@@ -39,10 +41,13 @@
             <!-- E-mail -->
             <div class="form-group">
                 <label for="email">E-mail *</label>
+                <!-- <small>La dirección de correo electrónico es su nombre de usuario.</small> -->
                 <input type="text" name="email" id="email" value="<?php echo $usuario['email']; ?>"
                     class="form-control form-control-lg <?php echo isset($errors['email']) ? 'is-invalid' : ''; ?>"
                     spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
-                <span class="invalid-feedback"><?php echo isset($errors['email']) ? $errors['email'] : ''; ?></span>
+                <span class="invalid-feedback">
+                    <?php echo isset($errors['email']) ? $errors['email'] : ''; ?>
+                </span>
             </div>
             <!-- Fin e-mail -->
 
@@ -56,8 +61,9 @@
                     class="form-control form-control-lg <?php echo isset($errors['password']) ? 'is-invalid' : ''; ?>"
                     aria-describedby="passwordHelp" spellcheck="false" autocomplete="off" autocorrect="off"
                     autocapitalize="off">
-                <span
-                    class="invalid-feedback"><?php echo isset($errors['password']) ? $errors['password'] : ''; ?></span>
+                <span class="invalid-feedback">
+                    <?php echo isset($errors['password']) ? $errors['password'] : ''; ?>
+                </span>
             </div>
             <!-- Fin contraseña -->
 
@@ -68,8 +74,9 @@
                     value="<?php //echo $usuario['confirm_password']; ?>"
                     class="form-control form-control-lg <?php echo isset($errors['confirm_password']) ? 'is-invalid' : ''; ?>"
                     spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
-                <span
-                    class="invalid-feedback"><?php echo isset($errors['confirm_password']) ? $errors['confirm_password'] : ''; ?></span>
+                <span class="invalid-feedback">
+                    <?php echo isset($errors['confirm_password']) ? $errors['confirm_password'] : ''; ?>
+                </span>
             </div>
             <!-- Fin confirmación de contraseña -->
 
@@ -109,7 +116,10 @@
             let value = this.value.trim();
             if (isEmpty(value)) {
                 // setError(email, "No puedes dejar este campo en blanco.");
-            } else if (validEmail(value)) {
+            }
+            // Validamos que sea un e-mail válido
+            else if (validEmail(value)) {
+                // Solicitud AJAX
                 let data = "email=" + encodeURIComponent(value.toLowerCase());
                 sendHttpRequest('POST', 'usuario_email_exists.php', data, emailExists);
             } else {

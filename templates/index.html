@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+
+<body>
+    <!-- <form action="">
+        <select name="" id="provincia" required>
+            <option value="">- Seleccione una opción -</option>
+            <option value="Mendoza">Mendoza</option>
+            <option value="San Luis">San Luis</option>
+            <option value="San Juan">San Juan</option>
+        </select>
+        <input type="submit" value="Enviar">
+        <button type="submit">Button</button>
+    </form> -->
+
+    <div style="width: 100%;max-width: 530px;margin: auto;padding: 3.3rem;">
+        <div style="text-align: center;">
+            <img src="https://static.wikia.nocookie.net/doblaje/images/5/55/Gadget.jpg/revision/latest/scale-to-width-down/340?cb=20110809010753&path-prefix=es"
+                alt="" height="330px">
+        </div>
+        <form action="https://www.google.com/search" method="get" style="margin: 1.5rem 0">
+            <input type="search" name="q"
+                style="width: 100%;height: 2.5rem;border-radius: 1.5rem;border: 1px solid #cecece;padding: 20px;font-size: 1rem;"
+                autofocus>
+        </form>
+
+    </div>
+
+    <div id="salida" style="margin-top: .5rem;"></div>
+
+    <script>
+        const selectProvincia = document.querySelector("#provincia");
+        const result = document.querySelector("#salida");
+        selectProvincia.onchange = function (e) {
+            const value = this.value;
+            const selectedIndex = this.selectedIndex;
+            result.textContent = (selectedIndex != 0) ? "Usted seleccionó: " + value : "Seleccione una opción";
+
+        }
+    </script>
+</body>
+
+</html>
