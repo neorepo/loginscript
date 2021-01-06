@@ -39,7 +39,7 @@
             </div>
 
             <!-- E-mail -->
-            <div class="form-group">
+            <div class="mb-3">
                 <label for="email">E-mail *</label>
                 <!-- <small>La dirección de correo electrónico es su nombre de usuario.</small> -->
                 <input type="text" name="email" id="email" value="<?php echo $usuario['email']; ?>"
@@ -52,7 +52,7 @@
             <!-- Fin e-mail -->
 
             <!-- Contraseña -->
-            <div class="form-group">
+            <div class="mb-3">
                 <label for="password" class="mb-0">Contraseña *</label>
                 <small id="passwordHelp" class="form-text mb-2">Utiliza ocho caracteres como mínimo con
                     una combinación de letras, números y símbolos, sin espacios en blanco, sin caracteres especiales,
@@ -68,7 +68,7 @@
             <!-- Fin contraseña -->
 
             <!-- Confirmación de contraseña -->
-            <div class="form-group">
+            <div class="mb-3">
                 <label for="confirm-password">Confirmación *</label>
                 <input type="password" name="confirm_password" id="confirm-password"
                     value="<?php //echo $usuario['confirm_password']; ?>"
@@ -81,7 +81,7 @@
             <!-- Fin confirmación de contraseña -->
 
             <!-- Checkbox mostrar contraseña -->
-            <div class="form-group">
+            <div class="mb-3">
                 <input type="checkbox" id="show-password"
                     style="position: relative; top: 2px;height: 16px;width: 16px;">
                 <label for="show-password" style="font-weight: normal;">Mostrar contraseña</label>
@@ -113,14 +113,14 @@
     function initEmailValidation() {
         if (!email) return;
         email.addEventListener("blur", function (e) {
-            let value = this.value.trim();
+            const value = this.value.trim();
             if (isEmpty(value)) {
                 // setError(email, "No puedes dejar este campo en blanco.");
             }
             // Validamos que sea un e-mail válido
             else if (validEmail(value)) {
                 // Solicitud AJAX
-                let data = "email=" + encodeURIComponent(value.toLowerCase());
+                const data = "email=" + encodeURIComponent(value.toLowerCase());
                 sendHttpRequest('POST', 'usuario_email_exists.php', data, emailExists);
             } else {
                 setError(email, "Introduce una dirección de correo electrónico válida JS.");
@@ -144,13 +144,13 @@
     }
 
     function initMostrarContrasenias() {
-        const show_psw = document.querySelector("#show-password");
-        if (show_psw) {
-            show_psw.onclick = mostrarContrasenias;
+        const checkBoxEl = document.querySelector("#show-password");
+        if (checkBoxEl) {
+            checkBoxEl.onclick = function (e) { return mostrarContrasenias(this, e); };
         }
     }
 
-    function mostrarContrasenias() {
+    function mostrarContrasenias(checkBoxObj, objEvent) {
         const psw1 = document.querySelector("#password");
         const psw2 = document.querySelector("#confirm-password");
         if (psw1 && psw2) {

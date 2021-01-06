@@ -25,14 +25,13 @@
     <script>
 
         document.addEventListener('DOMContentLoaded', () => {
-            focusEnElPrimerCampoDeError();
+            focusEnElPrimerCampoConError();
         });
 
-        function focusEnElPrimerCampoDeError() {
-            // Focus en el primer campo con error que exista en el formulario.
-            if (document.querySelector('.is-invalid')) {
-                document.querySelector('.is-invalid').focus();
-            }
+        // Focus en el primer campo con error que exista en el formulario.
+        function focusEnElPrimerCampoConError() {
+            const obj = document.querySelector('.is-invalid');
+            if (obj) obj.focus();
         }
 
         function isEmpty(str) {

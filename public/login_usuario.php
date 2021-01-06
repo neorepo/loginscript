@@ -5,6 +5,8 @@ require_once '../src/Db.php';
 require_once '../includes/funciones.php';
 require_once '../src/Token.php';
 
+var_dump( Db::query('SELECT * FROM sqlite_sequence;') );
+
 // Array con valores por defecto
 $usuario = [
     'email' => null,
