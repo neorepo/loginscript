@@ -12,16 +12,18 @@
         <form action="#" method="post">
             <input type="hidden" name="token" value="<?php echo htmlspecialchars(Token::csrf()); ?>" readonly
                 spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
+
             <div class="form-row">
-                <!-- Apelliddo -->
+
+                <!-- Apellido -->
                 <div class="col-md-6 mb-3">
                     <label for="apellido">Apellidos *</label>
                     <input type="text" name="apellido" id="apellido" value="<?php echo $usuario['apellido']; ?>"
                         class="form-control form-control-lg <?php echo isset($errors['apellido']) ? 'is-invalid' : ''; ?>"
                         spellcheck="false" autocomplete="off" autocorrect="off" autocapitalize="off">
-                    <span class="invalid-feedback">
+                    <div class="invalid-feedback">
                         <?php echo isset($errors['apellido']) ? $errors['apellido'] : ''; ?>
-                    </span>
+                    </div>
                 </div>
                 <!-- Fin apellido -->
 
