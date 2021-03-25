@@ -29,10 +29,13 @@
 
             <!-- Contraseña -->
             <div class="mb-3">
-                <label for="password">Contraseña</label>
-
-                <!-- Enlace de restablecimiento de contraseña -->
-                <a style="float: right;font-size: 14px;margin-top: .2rem;" href="">¿Se te olvidó tu contraseña?</a>
+                
+                <div style="display: flex;align-items: center;">
+                    <!-- Nota: el margin-bottom debe ser el mismo en el <label> y el <a> -->
+                    <label for="password" style="flex: 1;">Contraseña</label>
+                    <!-- Enlace de restablecimiento de contraseña -->
+                    <a href="" class="fs-14" style="margin-bottom: .25rem;">¿Se te olvidó tu contraseña?</a>
+                </div>
 
                 <input type="password" name="password" id="password" value="<?php //echo $usuario['password']; ?>"
                     class="form-control form-control-lg <?php echo isset($errors['password']) ? 'is-invalid' : ''; ?>"
